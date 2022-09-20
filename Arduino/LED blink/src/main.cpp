@@ -1,43 +1,39 @@
-#include <time.h>
 #include <Arduino.h>
+#include "timer.h"
 
-unsigned long timeout_start_time = 0;
-bool LED;
-bool timer(unsigned long zeit);
+bool ANred, AUSgreen;
+int LEDred = 6;    // Rot an Port 6
+int LEDgreen = 10; // Grün an Port 10
+
 void setup()
 {
-  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(LEDred, OUTPUT);
+  pinMode(LEDgreen, OUTPUT);
 }
 
 void loop()
 {
   bool zeit_abgelaufen = timer(1000);
 
-  if (zeit_abgelaufen && !LED)
+  if (zeit_abgelaufen && !ANred)
   {
-    digitalWrite(LED_BUILTIN, HIGH);
-    LED = true;
+    digitalWrite(LEDred, HIGH);
+    ANred = true;
   }
-  else if (zeit_abgelaufen && LED)
+  else if (zeit_abgelaufen && ANred)
   {
-    digitalWrite(LED_BUILTIN, LOW);
-    LED = false;
-  }
-}
-
-bool timer(unsigned long zeit)
-{
-  unsigned long currentMillis = millis();
-
-  if (timeout_start_time == 0)
-  {
-    timeout_start_time = currentMillis;
+    digitalWrite(LEDred, LOW);
+    ANred = false;
   }
 
-  if (currentMillis > (timeout_start_time + zeit))
+  if (zeit_abgelaufen && !AUSgreen)
   {
-    timeout_start_time = 0;
-    return true;
+    digitalWrite(LEDgreen, LOW);
+    AUSgreen = true;
   }
-  return false;
+  else if (zeit_abgelaufen && AUSgreen)
+  {
+    digitalWrite(LEDgreen, HIGH);
+    AUSgreen = false;
+  }
 }
