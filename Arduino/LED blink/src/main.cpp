@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "timer.h"
 
-bool ANred, AUSgreen;
+bool AN;
 int LEDred = 6;    // Rot an Port 6
 int LEDgreen = 10; // Grün an Port 10
 
@@ -13,27 +13,18 @@ void setup()
 
 void loop()
 {
-  bool zeit_abgelaufen = timer(1000);
+  bool zeit_abgelaufen = timer(500);
 
-  if (zeit_abgelaufen && !ANred)
+  if (zeit_abgelaufen && !AN)
   {
     digitalWrite(LEDred, HIGH);
-    ANred = true;
+    digitalWrite(LEDgreen, LOW);
+    AN = true;
   }
-  else if (zeit_abgelaufen && ANred)
+  else if (zeit_abgelaufen && AN)
   {
     digitalWrite(LEDred, LOW);
-    ANred = false;
-  }
-
-  if (zeit_abgelaufen && !AUSgreen)
-  {
-    digitalWrite(LEDgreen, LOW);
-    AUSgreen = true;
-  }
-  else if (zeit_abgelaufen && AUSgreen)
-  {
     digitalWrite(LEDgreen, HIGH);
-    AUSgreen = false;
+    AN = false;
   }
 }
