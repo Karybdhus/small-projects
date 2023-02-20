@@ -1,0 +1,1 @@
+bool timer(unsigned long zeit);

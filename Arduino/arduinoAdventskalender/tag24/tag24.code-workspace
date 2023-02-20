@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "tag24slave"
+		},
+		{
+			"name": "tag24master",
+			"path": "tag24master"
+		}
+	],
+	"settings": {}
+}
