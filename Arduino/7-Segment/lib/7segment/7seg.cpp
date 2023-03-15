@@ -1,127 +1,139 @@
 #include "7seg.h"
 
-int A = 6;
-int B = 7;
-int C = 8;
-int D = 9;
-int E = 10;
-int F = 11;
-int G = 12;
-int dp = 13;
-
-void clear(void)
+namespace vgf
 {
-    digitalWrite(A, LOW);
-    digitalWrite(B, LOW);
-    digitalWrite(C, LOW);
-    digitalWrite(D, LOW);
-    digitalWrite(E, LOW);
-    digitalWrite(F, LOW);
-    digitalWrite(G, LOW);
-    digitalWrite(dp, LOW);
-}
+    CSegment::CSegment()
+    {
+        init_7seg();
+    }
 
-void display1(void)
-{
-    clear();
-    digitalWrite(B, HIGH);
-    digitalWrite(C, HIGH);
-}
+    CSegment::~CSegment()
+    {
+    }
 
-void display2(void)
-{
-    clear();
-    digitalWrite(A, HIGH);
-    digitalWrite(B, HIGH);
-    digitalWrite(G, HIGH);
-    digitalWrite(E, HIGH);
-    digitalWrite(D, HIGH);
-}
+    void CSegment::init_7seg()
+    {
+        for (int i = 6; i <= 13; i++)
+        {
+            pinMode(i, OUTPUT);
+        }
+    }
 
-void display3(void)
-{
-    clear();
-    digitalWrite(A, HIGH);
-    digitalWrite(B, HIGH);
-    digitalWrite(G, HIGH);
-    digitalWrite(C, HIGH);
-    digitalWrite(D, HIGH);
-}
 
-void display4(void)
-{
-    clear();
-    digitalWrite(B, HIGH);
-    digitalWrite(G, HIGH);
-    digitalWrite(F, HIGH);
-    digitalWrite(C, HIGH);
-}
+    void CSegment::clear()
+    {
+        digitalWrite(A, LOW);
+        digitalWrite(B, LOW);
+        digitalWrite(C, LOW);
+        digitalWrite(D, LOW);
+        digitalWrite(E, LOW);
+        digitalWrite(F, LOW);
+        digitalWrite(G, LOW);
+        digitalWrite(dp, LOW);
+    }
 
-void display5(void)
-{
-    clear();
-    digitalWrite(A, HIGH);
-    digitalWrite(F, HIGH);
-    digitalWrite(G, HIGH);
-    digitalWrite(C, HIGH);
-    digitalWrite(D, HIGH);
-}
+    void CSegment::display1()
+    {
+        CSegment::clear();
+        digitalWrite(this->B, HIGH);
+        digitalWrite(this->C, HIGH);
+    }
 
-void display6(void)
-{
-    clear();
-    digitalWrite(A, HIGH);
-    digitalWrite(F, HIGH);
-    digitalWrite(G, HIGH);
-    digitalWrite(C, HIGH);
-    digitalWrite(D, HIGH);
-    digitalWrite(E, HIGH);
-}
+    void CSegment::display2()
+    {
+        CSegment::clear();
+        digitalWrite(this->A, HIGH);
+        digitalWrite(this->B, HIGH);
+        digitalWrite(this->G, HIGH);
+        digitalWrite(this->E, HIGH);
+        digitalWrite(this->D, HIGH);
+    }
 
-void display7(void)
-{
-    clear();
-    digitalWrite(A, HIGH);
-    digitalWrite(B, HIGH);
-    digitalWrite(C, HIGH);
-}
+    void CSegment::display3()
+    {
+        CSegment::clear();
+        digitalWrite(this->A, HIGH);
+        digitalWrite(this->B, HIGH);
+        digitalWrite(this->G, HIGH);
+        digitalWrite(this->C, HIGH);
+        digitalWrite(this->D, HIGH);
+    }
 
-void display8(void)
-{
-    clear();
-    digitalWrite(A, HIGH);
-    digitalWrite(B, HIGH);
-    digitalWrite(C, HIGH);
-    digitalWrite(D, HIGH);
-    digitalWrite(E, HIGH);
-    digitalWrite(F, HIGH);
-    digitalWrite(G, HIGH);
-}
+    void CSegment::display4()
+    {
+        CSegment::clear();
+        digitalWrite(this->B, HIGH);
+        digitalWrite(this->G, HIGH);
+        digitalWrite(this->F, HIGH);
+        digitalWrite(this->C, HIGH);
+    }
 
-void display9(void)
-{
-    clear();
-    digitalWrite(A, HIGH);
-    digitalWrite(B, HIGH);
-    digitalWrite(G, HIGH);
-    digitalWrite(F, HIGH);
-    digitalWrite(C, HIGH);
-    digitalWrite(D, HIGH);
-}
+    void CSegment::display5()
+    {
+        CSegment::clear();
+        digitalWrite(this->A, HIGH);
+        digitalWrite(this->F, HIGH);
+        digitalWrite(this->G, HIGH);
+        digitalWrite(this->C, HIGH);
+        digitalWrite(this->D, HIGH);
+    }
 
-void display0(void)
-{
-    clear();
-    digitalWrite(A, HIGH);
-    digitalWrite(B, HIGH);
-    digitalWrite(C, HIGH);
-    digitalWrite(D, HIGH);
-    digitalWrite(E, HIGH);
-    digitalWrite(F, HIGH);
-}
+    void CSegment::display6()
+    {
+        CSegment::clear();
+        digitalWrite(this->A, HIGH);
+        digitalWrite(this->F, HIGH);
+        digitalWrite(this->G, HIGH);
+        digitalWrite(this->C, HIGH);
+        digitalWrite(this->D, HIGH);
+        digitalWrite(this->E, HIGH);
+    }
 
-void displayFail(void)
-{
-    clear();
-    digitalWrite(dp, HIGH);
+    void CSegment::display7()
+    {
+        CSegment::clear();
+        digitalWrite(this->A, HIGH);
+        digitalWrite(this->B, HIGH);
+        digitalWrite(this->C, HIGH);
+    }
+
+    void CSegment::display8()
+    {
+        CSegment::clear();
+        digitalWrite(this->A, HIGH);
+        digitalWrite(this->B, HIGH);
+        digitalWrite(this->C, HIGH);
+        digitalWrite(this->D, HIGH);
+        digitalWrite(this->E, HIGH);
+        digitalWrite(this->F, HIGH);
+        digitalWrite(this->G, HIGH);
+    }
+
+    void CSegment::display9()
+    {
+        CSegment::clear();
+        digitalWrite(this->A, HIGH);
+        digitalWrite(this->B, HIGH);
+        digitalWrite(this->G, HIGH);
+        digitalWrite(this->F, HIGH);
+        digitalWrite(this->C, HIGH);
+        digitalWrite(this->D, HIGH);
+    }
+
+    void CSegment::display0()
+    {
+        CSegment::clear();
+        digitalWrite(this->A, HIGH);
+        digitalWrite(this->B, HIGH);
+        digitalWrite(this->C, HIGH);
+        digitalWrite(this->D, HIGH);
+        digitalWrite(this->E, HIGH);
+        digitalWrite(this->F, HIGH);
+    }
+
+    void CSegment::displayFail()
+    {
+        CSegment::clear();
+        digitalWrite(this->dp, HIGH);
+    }
 }

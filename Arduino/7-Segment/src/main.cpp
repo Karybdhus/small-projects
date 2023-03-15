@@ -12,20 +12,15 @@
   |   |
    --- o dp
     D
-
 */
 
+vgf::CSegment *Segment = new vgf::CSegment();
 void init_serial();
 
 int sendeInhalt = 0;
 
 void setup()
 {
-  for (int i = 6; i <= 13; i++)
-  {
-    pinMode(i, OUTPUT);
-  }
-
   init_serial();
 }
 
@@ -38,34 +33,34 @@ void loop()
     switch (sendeInhalt)
     {
     case '1':
-      display1();
+      Segment->display1();
       break;
     case '2':
-      display2();
+      Segment->display2();
       break;
     case '3':
-      display3();
+      Segment->display3();
       break;
     case '4':
-      display4();
+      Segment->display4();
       break;
     case '5':
-      display5();
+      Segment->display5();
       break;
     case '6':
-      display6();
+      Segment->display6();
       break;
     case '7':
-      display7();
+      Segment->display7();
       break;
     case '8':
-      display8();
+      Segment->display8();
       break;
     case '9':
-      display9();
+      Segment->display9();
       break;
     case '0':
-      display0();
+      Segment->display0();
       break;
     default:
       break;
