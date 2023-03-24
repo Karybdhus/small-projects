@@ -28,7 +28,7 @@ void rcWithEndMarker()
         }
         else 
         {
-            receivedChars[ndx] = '\0'; // terminate the string
+            receivedChars[ndx] = '\0'; 
             ndx = 0;
             newData = true;
         }
@@ -41,10 +41,6 @@ int transmitNumber()
     {
         dataNumber = 0;             
         dataNumber = atoi(receivedChars);   
-        Serial.print("This just in ... ");
-        Serial.println(receivedChars);
-        Serial.print("Data as Number ... ");    
-        Serial.println(dataNumber);    
         newData = false;
     }
     return dataNumber;
