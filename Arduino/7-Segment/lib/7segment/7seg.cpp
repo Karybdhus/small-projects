@@ -13,12 +13,14 @@ namespace vgf
 
     void CSegment::init_7seg()
     {
-        for (int i = 6; i <= 13; i++)
-        {
-            pinMode(i, OUTPUT);
-        }
+        pinMode(A2, OUTPUT);
+        pinMode(A3, OUTPUT);
+        pinMode(A4, OUTPUT);
+        pinMode(A5, OUTPUT);
+        pinMode(A6, OUTPUT);
+        pinMode(8, OUTPUT);
+        pinMode(9, OUTPUT);
     }
-
 
     void CSegment::clear()
     {
@@ -29,7 +31,6 @@ namespace vgf
         digitalWrite(E, LOW);
         digitalWrite(F, LOW);
         digitalWrite(G, LOW);
-        digitalWrite(dp, LOW);
     }
 
     void CSegment::display1()
@@ -134,6 +135,189 @@ namespace vgf
     void CSegment::displayFail()
     {
         CSegment::clear();
-        digitalWrite(this->dp, HIGH);
+        digitalWrite(this->A, HIGH);
+        digitalWrite(this->E, HIGH);
+        digitalWrite(this->F, HIGH);
+        digitalWrite(this->G, HIGH);
+    }
+
+    void CSegment::failure0()
+    {
+        bool change = timer(500);
+        
+        if (change && !(this->fehler))
+        {
+            CSegment::clear();
+            CSegment::display0();
+            this->fehler = true;
+        }
+        else if (change && this->fehler)
+        {
+            CSegment::clear();
+            CSegment::displayFail();
+            this->fehler = false;
+        }
+    }
+
+    void CSegment::failure1()
+    {
+        bool change = timer(500);
+        
+        if (change && !(this->fehler))
+        {
+            CSegment::clear();
+            CSegment::display1();
+            this->fehler = true;
+        }
+        else if (change && this->fehler)
+        {
+            CSegment::clear();
+            CSegment::displayFail();
+            this->fehler = false;
+        }
+    }
+
+    void CSegment::failure2()
+    {
+        bool change = timer(500);
+        
+        if (change && !(this->fehler))
+        {
+            CSegment::clear();
+            CSegment::display2();
+            this->fehler = true;
+        }
+        else if (change && this->fehler)
+        {
+            CSegment::clear();
+            CSegment::displayFail();
+            this->fehler = false;
+        }
+    }
+
+    void CSegment::failure3()
+    {
+        bool change = timer(500);
+        
+        if (change && !(this->fehler))
+        {
+            CSegment::clear();
+            CSegment::display3();
+            this->fehler = true;
+        }
+        else if (change && this->fehler)
+        {
+            CSegment::clear();
+            CSegment::displayFail();
+            this->fehler = false;
+        }
+    }
+
+    void CSegment::failure4()
+    {
+        bool change = timer(500);
+        
+        if (change && !(this->fehler))
+        {
+            CSegment::clear();
+            CSegment::display4();
+            this->fehler = true;
+        }
+        else if (change && this->fehler)
+        {
+            CSegment::clear();
+            CSegment::displayFail();
+            this->fehler = false;
+        }
+    }
+
+    void CSegment::failure5()
+    {
+        bool change = timer(500);
+        
+        if (change && !(this->fehler))
+        {
+            CSegment::clear();
+            CSegment::display5();
+            this->fehler = true;
+        }
+        else if (change && this->fehler)
+        {
+            CSegment::clear();
+            CSegment::displayFail();
+            this->fehler = false;
+        }
+    }
+
+    void CSegment::failure6()
+    {
+        bool change = timer(500);
+        
+        if (change && !(this->fehler))
+        {
+            CSegment::clear();
+            CSegment::display6();
+            this->fehler = true;
+        }
+        else if (change && this->fehler)
+        {
+            CSegment::clear();
+            CSegment::displayFail();
+            this->fehler = false;
+        }
+    }
+
+    void CSegment::failure7()
+    {
+        bool change = timer(500);
+        
+        if (change && !(this->fehler))
+        {
+            CSegment::clear();
+            CSegment::display7();
+            this->fehler = true;
+        }
+        else if (change && this->fehler)
+        {
+            CSegment::clear();
+            CSegment::displayFail();
+            this->fehler = false;
+        }
+    }
+
+    void CSegment::failure8()
+    {
+        bool change = timer(500);
+        
+        if (change && !(this->fehler))
+        {
+            CSegment::clear();
+            CSegment::display8();
+            this->fehler = true;
+        }
+        else if (change && this->fehler)
+        {
+            CSegment::clear();
+            CSegment::displayFail();
+            this->fehler = false;
+        }
+    }
+
+    void CSegment::failure9()
+    {
+        bool change = timer(500);
+        
+        if (change && !(this->fehler))
+        {
+            CSegment::clear();
+            CSegment::display9();
+            this->fehler = true;
+        }
+        else if (change && this->fehler)
+        {
+            CSegment::clear();
+            CSegment::displayFail();
+            this->fehler = false;
+        }
     }
 }

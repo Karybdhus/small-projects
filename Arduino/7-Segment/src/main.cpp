@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include "7seg.h"
 #include "timer.h"
+#include "rcData.h"
 
 /*
     A
@@ -15,6 +16,7 @@
 */
 
 vgf::CSegment *Segment = new vgf::CSegment();
+
 void init_serial();
 
 int sendeInhalt = 0;
@@ -26,45 +28,46 @@ void setup()
 
 void loop()
 {
-  if (Serial.available() > 0)
-  {
-    sendeInhalt = Serial.read();
+  rcWithEndMarker();
+  sendeInhalt = transmitNumber();
 
-    switch (sendeInhalt)
-    {
-    case '1':
-      Segment->display1();
+  Serial.print("sendeInhalt: ");
+  Serial.println(sendeInhalt);
+  switch (sendeInhalt)
+  {
+    case 1:
+      Segment->failure1();
       break;
-    case '2':
-      Segment->display2();
+    case 2:
+      Segment->failure2();
       break;
-    case '3':
-      Segment->display3();
+    case 3:
+      Segment->failure3();
       break;
-    case '4':
-      Segment->display4();
+    case 4:
+      Segment->failure4();
       break;
-    case '5':
-      Segment->display5();
+    case 5:
+      Segment->failure5();
       break;
-    case '6':
-      Segment->display6();
+    case 6:
+      Segment->failure6();
       break;
-    case '7':
-      Segment->display7();
+    case 7:
+      Segment->failure7();
       break;
-    case '8':
-      Segment->display8();
+    case 8:
+      Segment->failure8();
       break;
-    case '9':
-      Segment->display9();
+    case 9:
+      Segment->failure9();
       break;
-    case '0':
-      Segment->display0();
+    case 0:
+      Segment->failure0();
       break;
     default:
+      Segment->clear();
       break;
-    }
   }
 }
 

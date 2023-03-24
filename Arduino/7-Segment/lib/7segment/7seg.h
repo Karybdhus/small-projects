@@ -1,19 +1,21 @@
 #pragma once
 #include <Arduino.h>
+#include "timer.h"
 
 namespace vgf
 {
     class CSegment
     {
         private:
-            int A = 6;
-            int B = 7;
-            int C = 8;
-            int D = 9;
-            int E = 10;
-            int F = 11;
-            int G = 12;
-            int dp = 13;
+            int A = PIN_A2;
+            int B = PIN_A3;
+            int C = PIN_A4;
+            int D = PIN_A5;
+            int E = PIN_A6;
+            int F = 8;
+            int G = 9;
+            bool fehler = false;
+            
             void init_7seg();
 
         public:
@@ -31,5 +33,15 @@ namespace vgf
             void display9();
             void display0();
             void displayFail();
+            void failure0();
+            void failure1();
+            void failure2();
+            void failure3();
+            void failure4();
+            void failure5();
+            void failure6();
+            void failure7();
+            void failure8();
+            void failure9();
     };
 }
