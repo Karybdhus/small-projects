@@ -5,25 +5,27 @@ Account::Account(float bal, float cr, std::string last, std::string first)
 {
 }
 
-std::string getLastName()
+std::string Account::getLastName()
 {
-    
+    return lastName;
 }
 
-std::string getFirstName()
+std::string Account::getFirstName()
 {
-
+    return firstName;
 }
 
-float getBalance()
+float Account::getBalance()
 {
-
+    return balance;
 }
 
-bool changeBalance()
+bool Account::changeBalance()
 {
+    return true;
 }
 
-void changeCredit()
+void Account::changeCredit()
 {
+    return;
 }
