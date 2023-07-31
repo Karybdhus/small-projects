@@ -15,11 +15,13 @@ private:
     std::string firstName;
 
 public:
-    Account(float bal, float cr, const std::string last, const std::string first); 
-    std::string getLastName();                                                     
-    std::string getFirstName();                                                    
-    float getBalance();                                                            
-    bool changeBalance();                                                          
+    Account(float bal, float cr, const std::string last, const std::string first);
+    std::string getLastName();
+    std::string getFirstName();
+    float getBalance();
+    float getCredit();
+    bool deposit();
+    bool payout();
     void changeCredit();
 };
 
@@ -27,14 +29,14 @@ class Accountlist
 {
 private:
 public:
-    Account* data;
-    Accountlist* next;
+    Account *data;
+    Accountlist *next;
 };
 
 class Management
 {
 private:
-    Accountlist* accounts;
+    Accountlist *accounts;
 
 public:
     Management();

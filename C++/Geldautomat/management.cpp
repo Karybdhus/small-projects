@@ -6,10 +6,11 @@ Management::Management() : accounts(nullptr)
 
 Management::~Management()
 {
-    Accountlist* current = accounts;
+    Accountlist *current = accounts;
     while (current != nullptr)
     {
-        Accountlist* next = current->next;
+        Accountlist *next = current->next;
+        delete current->data;
         delete current;
         current = next;
     }
@@ -31,8 +32,8 @@ void Management::addAccount()
 
     credit = balance * 0.1;
 
-    Account* newAccount = new Account(balance, credit, lastName, firstName);
-    Accountlist* newNode = new Accountlist;
+    Account *newAccount = new Account(balance, credit, lastName, firstName);
+    Accountlist *newNode = new Accountlist;
     newNode->data = newAccount;
     newNode->next = nullptr;
 
@@ -42,7 +43,7 @@ void Management::addAccount()
     }
     else
     {
-        Accountlist* current = accounts;
+        Accountlist *current = accounts;
         while (current->next != nullptr)
         {
             current = current->next;

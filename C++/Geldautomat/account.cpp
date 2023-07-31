@@ -20,7 +20,17 @@ float Account::getBalance()
     return balance;
 }
 
-bool Account::changeBalance()
+float Account::getCredit()
+{
+    return credit;
+}
+
+bool Account::deposit()
+{
+    return true;
+}
+
+bool Account::payout()
 {
     return true;
 }
