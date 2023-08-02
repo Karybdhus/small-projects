@@ -2,6 +2,9 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
+
+#define MAX_LENGTH 20
 
 void showMenu();
 void subMenu(std::string firstName, std::string lastName);
@@ -31,6 +34,7 @@ private:
 public:
     Account *data;
     Accountlist *next;
+    Accountlist(Account *acc);
 };
 
 class Management
@@ -43,4 +47,5 @@ public:
     ~Management();
 
     void addAccount();
+    void showAccounts();
 };

@@ -20,11 +20,14 @@ int main()
             continue;
         }
 
+        while (getc(stdin) != '\n')
+            ;
+            
         switch (choice)
         {
         case 1:
         {
-            std::cout << "\nKontoliste wird angezeigt" << std::endl;
+            manager.showAccounts();
             break;
         }
 
