@@ -19,14 +19,14 @@ void showMenu()
 void subMenu(std::string firstName, std::string lastName)
 {
     std::cout << "\n\nKontoinhaber: " << firstName << " " << lastName << std::endl;
-    std::cout << "------------------------" << std::endl;
+    std::cout << "----------------------------" << std::endl;
     std::cout << "1 - Kontostand anzeigen" << std::endl;
     std::cout << "2 - Betrag einzahlen" << std::endl;
     std::cout << "3 - Betrag abheben" << std::endl;
     std::cout << "4 - Ueberweisung" << std::endl;
     std::cout << "5 - Kreditrahmen aendern" << std::endl;
     std::cout << "6 - Zurueck" << std::endl;
-    std::cout << "------------------------" << std::endl;
+    std::cout << "----------------------------" << std::endl;
     std::cout << "Auswahl: ";
     return;
 }

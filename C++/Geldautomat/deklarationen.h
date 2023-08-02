@@ -8,6 +8,7 @@
 
 void showMenu();
 void subMenu(std::string firstName, std::string lastName);
+void accountManagement(std::string firstName, std::string lastName);
 
 class Account
 {
@@ -24,8 +25,9 @@ public:
     float getBalance();
     float getCredit();
     bool deposit();
-    bool payout();
-    void changeCredit();
+    bool withdraw();
+    bool setCredit();
+    bool transfer();
 };
 
 class Accountlist
@@ -48,4 +50,6 @@ public:
 
     void addAccount();
     void showAccounts();
+    void accountManagement(std::string firstName, std::string lastName);
+    Account *findAccount(const std::string &lastName, const std::string &firstName);
 };

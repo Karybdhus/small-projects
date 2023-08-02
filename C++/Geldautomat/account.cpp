@@ -30,12 +30,17 @@ bool Account::deposit()
     return true;
 }
 
-bool Account::payout()
+bool Account::withdraw()
 {
     return true;
 }
 
-void Account::changeCredit()
+bool Account::setCredit()
 {
-    return;
+    return true;
+}
+
+bool Account::transfer()
+{
+    return true;
 }

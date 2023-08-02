@@ -22,7 +22,7 @@ int main()
 
         while (getc(stdin) != '\n')
             ;
-            
+
         switch (choice)
         {
         case 1:
@@ -35,10 +35,18 @@ int main()
         {
             std::cout << "\nKonto auswaehlen" << std::endl;
             std::cout << "Nachname: ";
-            std::cin >> lastName;
+            std::getline(std::cin, lastName);
+            if (lastName.length() > MAX_LENGTH)
+            {
+                lastName = lastName.substr(0, MAX_LENGTH);
+            }
             std::cout << "Vorname: ";
-            std::cin >> firstName;
-            subMenu(firstName, lastName);
+            std::getline(std::cin, firstName);
+            if (firstName.length() > MAX_LENGTH)
+            {
+                firstName = firstName.substr(0, MAX_LENGTH);
+            }
+            manager.accountManagement(firstName, lastName);
             break;
         }
 
