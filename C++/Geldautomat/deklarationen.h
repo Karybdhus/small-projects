@@ -9,6 +9,7 @@
 void showMenu();
 void subMenu(std::string firstName, std::string lastName);
 void accountManagement(std::string firstName, std::string lastName);
+void getLastNameAndFirstName(std::string &lastName, std::string &firstName);
 
 class Account
 {
@@ -49,6 +50,7 @@ public:
     ~Management();
 
     void addAccount();
+    void deleteAccount();
     void showAccounts();
     void accountManagement(std::string firstName, std::string lastName);
     Account *findAccount(const std::string &lastName, const std::string &firstName);

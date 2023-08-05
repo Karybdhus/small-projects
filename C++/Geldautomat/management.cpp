@@ -21,18 +21,7 @@ void Management::addAccount()
     float balance{-1}, credit;
     std::string lastName, firstName;
 
-    std::cout << "Nachname: ";
-    std::getline(std::cin, lastName);
-    if (lastName.length() > MAX_LENGTH)
-    {
-        lastName = lastName.substr(0, MAX_LENGTH);
-    }
-    std::cout << "Vorname: ";
-    std::getline(std::cin, firstName);
-    if (firstName.length() > MAX_LENGTH)
-    {
-        firstName = firstName.substr(0, MAX_LENGTH);
-    }
+    getLastNameAndFirstName(lastName, firstName);
 
     while (balance < 0)
     {
@@ -83,11 +72,13 @@ void Management::addAccount()
 void Management::showAccounts()
 {
     Accountlist *current = accounts;
+
     if (current == nullptr)
     {
         std::cout << "\nKeine Konten vorhanden." << std::endl;
         return;
     }
+
     std::cout << "\nKontoliste:\n"
               << std::endl;
     std::cout << std::left;
@@ -149,6 +140,7 @@ void Management::accountManagement(std::string firstName, std::string lastName)
             std::cout << "Kontostand: " << account->getBalance() << "€" << std::endl;
             break;
         }
+
         case 2:
         {
             if (account->deposit())
@@ -158,6 +150,7 @@ void Management::accountManagement(std::string firstName, std::string lastName)
             }
             break;
         }
+
         case 3:
         {
             if (account->withdraw())
@@ -167,6 +160,7 @@ void Management::accountManagement(std::string firstName, std::string lastName)
             }
             break;
         }
+
         case 4:
         {
             if (account->transfer())
@@ -176,6 +170,7 @@ void Management::accountManagement(std::string firstName, std::string lastName)
             }
             break;
         }
+
         case 5:
         {
             if (account->setCredit())
@@ -185,12 +180,52 @@ void Management::accountManagement(std::string firstName, std::string lastName)
             }
             break;
         }
+
         case 6:
         {
             std::cout << "Zurück zum Hauptmenu" << std::endl;
             return;
         }
         }
+    }
+    return;
+}
+
+void Management::deleteAccount()
+{
+    Account *account;
+    Accountlist *current = accounts;
+    Accountlist *prev = nullptr;
+    std::string lastName, firstName;
+
+    std::cout << "\nKonto auswaehlen" << std::endl;
+    getLastNameAndFirstName(lastName, firstName);
+
+    if ((account = findAccount(lastName, firstName)) == nullptr)
+    {
+        std::cout << "Konto nicht vorhanden.\n"
+                  << std::endl;
+        return;
+    }
+
+    while (current != nullptr)
+    {
+        if (current->data->getLastName() == lastName && current->data->getFirstName() == firstName)
+        {
+            if (prev == nullptr)
+            {
+                accounts = current->next;
+            }
+            else
+            {
+                prev->next = current->next;
+            }
+            delete current->data;
+            delete current;
+            return;
+        }
+        prev = current;
+        current = current->next;
     }
     return;
 }

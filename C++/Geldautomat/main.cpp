@@ -34,25 +34,14 @@ int main()
         case 2:
         {
             std::cout << "\nKonto auswaehlen" << std::endl;
-            std::cout << "Nachname: ";
-            std::getline(std::cin, lastName);
-            if (lastName.length() > MAX_LENGTH)
-            {
-                lastName = lastName.substr(0, MAX_LENGTH);
-            }
-            std::cout << "Vorname: ";
-            std::getline(std::cin, firstName);
-            if (firstName.length() > MAX_LENGTH)
-            {
-                firstName = firstName.substr(0, MAX_LENGTH);
-            }
+            getLastNameAndFirstName(lastName, firstName);
             manager.accountManagement(firstName, lastName);
             break;
         }
 
         case 3:
         {
-            std::cout << "\nKonto anlegen" << std::endl;
+            std::cout << "\nKonto wird angelegt" << std::endl;
             manager.addAccount();
             break;
         }
@@ -60,6 +49,7 @@ int main()
         case 4:
         {
             std::cout << "\nKonto wird entfernt" << std::endl;
+            manager.deleteAccount();
             break;
         }
 

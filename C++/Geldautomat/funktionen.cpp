@@ -30,3 +30,20 @@ void subMenu(std::string firstName, std::string lastName)
     std::cout << "Auswahl: ";
     return;
 }
+
+void getLastNameAndFirstName(std::string &lastName, std::string &firstName)
+{
+    std::cout << "Nachname: ";
+    std::getline(std::cin, lastName);
+    if (lastName.length() > MAX_LENGTH)
+    {
+        lastName = lastName.substr(0, MAX_LENGTH);
+    }
+
+    std::cout << "Vorname: ";
+    std::getline(std::cin, firstName);
+    if (firstName.length() > MAX_LENGTH)
+    {
+        firstName = firstName.substr(0, MAX_LENGTH);
+    }
+}
