@@ -1,8 +1,35 @@
 #include "deklarationen.h"
 
+template <>
+std::string validInput()
+{
+    std::string input;
+    while (true)
+    {
+        std::getline(std::cin, input);
+        if (std::cin.fail() || input.empty())
+        {
+            std::cout << "\nFehlerhafte Eingabe. Bitte wiederholen" << std::endl;
+            std::cin.clear();
+            while (std::cin.get() != '\n')
+                ;
+        }
+        else if (input.length() > MAX_LENGTH)
+        {
+            input = input.substr(0, MAX_LENGTH);
+            break;
+        }
+        else
+        {
+            break;
+        }
+    }
+    return input;
+}
+
 void showMenu()
 {
-    std::cout << "\n\n ------------------------- " << std::endl;
+    std::cout << "\n ------------------------- " << std::endl;
     std::cout << "|     Kontoverwaltung     |" << std::endl;
     std::cout << "|-------------------------|" << std::endl;
     std::cout << "| 1 - Nutzer anzeigen     |" << std::endl;
@@ -18,7 +45,7 @@ void showMenu()
 
 void subMenu(std::string firstName, std::string lastName)
 {
-    std::cout << "\n\nKontoinhaber: " << firstName << " " << lastName << std::endl;
+    std::cout << "\nKontoinhaber: " << firstName << " " << lastName << std::endl;
     std::cout << "----------------------------" << std::endl;
     std::cout << "1 - Kontostand anzeigen" << std::endl;
     std::cout << "2 - Betrag einzahlen" << std::endl;
@@ -33,17 +60,9 @@ void subMenu(std::string firstName, std::string lastName)
 
 void getLastNameAndFirstName(std::string &lastName, std::string &firstName)
 {
-    std::cout << "Nachname: ";
-    std::getline(std::cin, lastName);
-    if (lastName.length() > MAX_LENGTH)
-    {
-        lastName = lastName.substr(0, MAX_LENGTH);
-    }
+    std::cout << "\nNachname: ";
+    lastName = validInput<std::string>();
 
     std::cout << "Vorname: ";
-    std::getline(std::cin, firstName);
-    if (firstName.length() > MAX_LENGTH)
-    {
-        firstName = firstName.substr(0, MAX_LENGTH);
-    }
+    firstName = validInput<std::string>();
 }
