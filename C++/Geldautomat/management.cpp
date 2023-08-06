@@ -26,13 +26,10 @@ void Management::addAccount()
     while (balance < 0)
     {
         std::cout << "Ersteinzahlung: ";
-        std::cin >> balance;
-        if (std::cin.fail() || balance < 0)
+        balance = validInput<float>();
+        if (balance < 0)
         {
-            std::cout << "Fehlerhafte Eingabe. Betrag muss mindestens 0€ sein." << std::endl;
-            std::cin.clear();
-            while (getc(stdin) != '\n')
-                ;
+            std::cout << "\nFehlerhafte Eingabe. Betrag muss mindestens 0€ sein." << std::endl;
         }
     }
 
@@ -121,21 +118,20 @@ void Management::accountManagement(std::string firstName, std::string lastName)
     while (true)
     {
         subMenu(firstName, lastName);
-        std::cin >> choice;
 
-        if (std::cin.fail() || choice < 1 || choice > 6)
+        choice = validInput<int>();
+
+        if (choice < 1 || choice > 6)
         {
-            std::cout << "Fehlerhafte Eingabe, bitte wiederholen" << std::endl;
-            std::cin.clear();
-            while (getc(stdin) != '\n')
-                ;
+            std::cout << "\nFehlerhafte Eingabe, bitte wiederholen" << std::endl;
             continue;
         }
+
         switch (choice)
         {
         case 1:
         {
-            std::cout << "Kontoinhaber: " << firstName << " " << lastName << std::endl;
+            std::cout << "\nKontoinhaber: " << firstName << " " << lastName << std::endl;
             std::cout << std::fixed << std::showpoint << std::setprecision(2);
             std::cout << "Kontostand: " << account->getBalance() << "€" << std::endl;
             break;
@@ -145,7 +141,7 @@ void Management::accountManagement(std::string firstName, std::string lastName)
         {
             if (account->deposit())
             {
-                std::cout << "Einzahlung erfolgreich" << std::endl;
+                std::cout << "\nEinzahlung erfolgreich" << std::endl;
                 std::cout << "Neuer Kontostand: " << account->getBalance() << "€" << std::endl;
             }
             break;
@@ -155,7 +151,7 @@ void Management::accountManagement(std::string firstName, std::string lastName)
         {
             if (account->withdraw())
             {
-                std::cout << "Auszahlung erfolgreich" << std::endl;
+                std::cout << "\nAuszahlung erfolgreich" << std::endl;
                 std::cout << "Neuer Kontostand: " << account->getBalance() << "€" << std::endl;
             }
             break;
@@ -165,7 +161,7 @@ void Management::accountManagement(std::string firstName, std::string lastName)
         {
             if (account->transfer())
             {
-                std::cout << "Überweisung erfolgreich" << std::endl;
+                std::cout << "\nÜberweisung erfolgreich" << std::endl;
                 std::cout << "Neuer Kontostand: " << account->getBalance() << "€" << std::endl;
             }
             break;
@@ -175,7 +171,7 @@ void Management::accountManagement(std::string firstName, std::string lastName)
         {
             if (account->setCredit())
             {
-                std::cout << "Änderung erfolgreich" << std::endl;
+                std::cout << "\nÄnderung erfolgreich" << std::endl;
                 std::cout << "Neuer Creditrahmen: " << account->getCredit() << "€" << std::endl;
             }
             break;
@@ -183,7 +179,7 @@ void Management::accountManagement(std::string firstName, std::string lastName)
 
         case 6:
         {
-            std::cout << "Zurück zum Hauptmenu" << std::endl;
+            std::cout << "\nZurück zum Hauptmenu" << std::endl;
             return;
         }
         }
@@ -227,5 +223,33 @@ void Management::deleteAccount()
         prev = current;
         current = current->next;
     }
+    return;
+}
+
+bool Management::hasAccounts()
+{
+    return accounts != nullptr;
+}
+
+void Management::saveAccounts()
+{
+    std::ofstream outputFile;
+    std::string fileName = "Kontoliste.csv";
+    Accountlist *current = accounts;
+
+    outputFile.open(fileName);
+
+    if (!outputFile.is_open())
+    {
+        std::cerr << "Fehler beim öffnen der Datei: " << fileName << std::endl;
+        return;
+    }
+
+    while (current != nullptr)
+    {
+        outputFile << current->data->getLastName() << ";" << current->data->getFirstName() << ";" << current->data->getBalance() << ";" << current->data->getCredit() << std::endl;
+        current = current->next;
+    }
+    outputFile.close();
     return;
 }

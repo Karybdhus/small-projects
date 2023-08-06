@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <fstream>
 
 #define MAX_LENGTH 20
 
@@ -49,9 +50,35 @@ public:
     Management();
     ~Management();
 
+    bool hasAccounts();
     void addAccount();
     void deleteAccount();
     void showAccounts();
+    void saveAccounts();
     void accountManagement(std::string firstName, std::string lastName);
     Account *findAccount(const std::string &lastName, const std::string &firstName);
 };
+
+template <typename T>
+T validInput()
+{
+    T input;
+    while (true)
+    {
+        std::cin >> input;
+        if (std::cin.fail())
+        {
+            std::cout << "\nFehlerhafte Eingabe. Bitte wiederholen" << std::endl;
+            std::cin.clear();
+            while (std::cin.get() != '\n')
+                ;
+        }
+        else
+        {
+            while (std::cin.get() != '\n')
+                ;
+            break;
+        }
+    }
+    return input;
+}

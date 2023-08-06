@@ -9,30 +9,34 @@ int main()
     while (true)
     {
         showMenu();
-        std::cin >> choice;
+        choice = validInput<int>();
 
-        if (std::cin.fail() || choice < 1 || choice > 6)
+        if (choice < 1 || choice > 6)
         {
-            std::cout << "Fehlerhafte Eingabe, bitte wiederholen" << std::endl;
-            std::cin.clear();
-            while (getc(stdin) != '\n')
-                ;
+            std::cout << "\nFehlerhafte Eingabe, bitte wiederholen" << std::endl;
             continue;
         }
-
-        while (getc(stdin) != '\n')
-            ;
 
         switch (choice)
         {
         case 1:
         {
+            if(!manager.hasAccounts())
+            {
+                std::cout << "\nKeine Konten vorhanden" << std::endl;
+                break;
+            }
             manager.showAccounts();
             break;
         }
 
         case 2:
         {
+            if(!manager.hasAccounts())
+            {
+                std::cout << "\nKeine Konten vorhanden" << std::endl;
+                break;
+            }
             std::cout << "\nKonto auswaehlen" << std::endl;
             getLastNameAndFirstName(lastName, firstName);
             manager.accountManagement(firstName, lastName);
@@ -48,6 +52,11 @@ int main()
 
         case 4:
         {
+            if(!manager.hasAccounts())
+            {
+                std::cout << "\nKeine Konten vorhanden" << std::endl;
+                break;
+            }
             std::cout << "\nKonto wird entfernt" << std::endl;
             manager.deleteAccount();
             break;
@@ -55,7 +64,13 @@ int main()
 
         case 5:
         {
+            if(!manager.hasAccounts())
+            {
+                std::cout << "\nKeine Konten vorhanden" << std::endl;
+                break;
+            }
             std::cout << "\nDaten werden gesichert" << std::endl;
+            manager.saveAccounts();
             break;
         }
 
