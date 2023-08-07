@@ -4,12 +4,12 @@
 #include <string>
 #include <iomanip>
 #include <fstream>
+#include <sstream>
 
 #define MAX_LENGTH 20
 
 void showMenu();
 void subMenu(std::string firstName, std::string lastName);
-void accountManagement(std::string firstName, std::string lastName);
 void getLastNameAndFirstName(std::string &lastName, std::string &firstName);
 
 class Account
@@ -29,7 +29,7 @@ public:
     bool deposit();
     bool withdraw();
     bool setCredit();
-    bool transfer();
+    bool transfer(Account *recipient);
 };
 
 class Accountlist
@@ -55,6 +55,7 @@ public:
     void deleteAccount();
     void showAccounts();
     void saveAccounts();
+    void loadAccounts();
     void accountManagement(std::string firstName, std::string lastName);
     Account *findAccount(const std::string &lastName, const std::string &firstName);
 };

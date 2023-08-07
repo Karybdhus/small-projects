@@ -159,7 +159,20 @@ void Management::accountManagement(std::string firstName, std::string lastName)
 
         case 4:
         {
-            if (account->transfer())
+            Account *recipient;
+            std::string lastName, firstName;
+
+            std::cout << "\nEmpfängerkonto angeben";
+            getLastNameAndFirstName(lastName, firstName);
+
+            if ((recipient = findAccount(lastName, firstName)) == nullptr)
+            {
+                std::cout << "Empfängerkonto nicht vorhanden.\n"
+                          << std::endl;
+                return;
+            } 
+
+            if (account->transfer(recipient))
             {
                 std::cout << "\nÜberweisung erfolgreich" << std::endl;
                 std::cout << "Neuer Kontostand: " << account->getBalance() << "€" << std::endl;
@@ -172,7 +185,7 @@ void Management::accountManagement(std::string firstName, std::string lastName)
             if (account->setCredit())
             {
                 std::cout << "\nÄnderung erfolgreich" << std::endl;
-                std::cout << "Neuer Creditrahmen: " << account->getCredit() << "€" << std::endl;
+                std::cout << "Neuer Kreditrahmen: " << account->getCredit() << "€" << std::endl;
             }
             break;
         }
@@ -251,5 +264,81 @@ void Management::saveAccounts()
         current = current->next;
     }
     outputFile.close();
+    return;
+}
+
+void Management::loadAccounts()
+{
+    std::ifstream inputFile;
+    std::string fileName;
+    std::string line;
+    int counter = 0;
+
+    std::cout << "Dateinamen eingeben: ";
+    fileName = validInput<std::string>();
+
+    inputFile.open(fileName);
+
+    if (!inputFile.is_open())
+    {
+        std::cerr << "Fehler beim Öffnen der Datei " << fileName << std::endl
+                  << "Keine Daten geladen" << std::endl;
+        return;
+    }
+
+    while (std::getline(inputFile, line))
+    {
+        std::istringstream iss(line);
+        std::string lastName, firstName;
+        std::string token;
+        float balance, credit;
+
+        if (std::getline(iss, token, ';'))
+        {
+            lastName = token;
+        }
+
+        if (std::getline(iss, token, ';'))
+        {
+            firstName = token;
+        }
+
+        if (std::getline(iss, token, ';'))
+        {
+            balance = std::stof(token);
+        }
+        if (std::getline(iss, token, ';'))
+        {
+            credit = std::stof(token);
+        }
+
+        if (iss.fail())
+        {
+            std::cerr << "Fehler beim Lesen der Daten" << std::endl;
+            return;
+        }
+
+        Account *newAccount = new Account(balance, credit, lastName, firstName);
+        Accountlist *newNode = new Accountlist(newAccount);
+        newNode->data = newAccount;
+        newNode->next = nullptr;
+
+        if (accounts == nullptr)
+        {
+            accounts = newNode;
+        }
+        else
+        {
+            Accountlist *current = accounts;
+            while (current->next != nullptr)
+            {
+                current = current->next;
+            }
+            current->next = newNode;
+        }
+        counter++;
+    }
+    inputFile.close();
+    std::cout << counter << " Accounts erfolgreich eingelesen" << std::endl;
     return;
 }

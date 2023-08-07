@@ -11,7 +11,7 @@ int main()
         showMenu();
         choice = validInput<int>();
 
-        if (choice < 1 || choice > 6)
+        if (choice < 1 || choice > 7)
         {
             std::cout << "\nFehlerhafte Eingabe, bitte wiederholen" << std::endl;
             continue;
@@ -75,6 +75,13 @@ int main()
         }
 
         case 6:
+        {
+            std::cout << "\nDaten werden geladen" << std::endl;
+            manager.loadAccounts();
+            break;
+        }
+
+        case 7:
         {
             std::cout << "\nProgramm wird beendet" << std::endl;
             return 0;

@@ -37,7 +37,8 @@ void showMenu()
     std::cout << "| 3 - Neues Konto anlegen |" << std::endl;
     std::cout << "| 4 - Konto schliessen    |" << std::endl;
     std::cout << "| 5 - Daten speichern     |" << std::endl;
-    std::cout << "| 6 - Programm beenden    |" << std::endl;
+    std::cout << "| 6 - Daten extern laden  |" << std::endl;
+    std::cout << "| 7 - Programm beenden    |" << std::endl;
     std::cout << " ------------------------- " << std::endl;
     std::cout << " Auswahl: ";
     return;
