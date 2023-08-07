@@ -170,7 +170,7 @@ void Management::accountManagement(std::string firstName, std::string lastName)
                 std::cout << "Empfängerkonto nicht vorhanden.\n"
                           << std::endl;
                 return;
-            } 
+            }
 
             if (account->transfer(recipient))
             {

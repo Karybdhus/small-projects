@@ -21,7 +21,7 @@ int main()
         {
         case 1:
         {
-            if(!manager.hasAccounts())
+            if (!manager.hasAccounts())
             {
                 std::cout << "\nKeine Konten vorhanden" << std::endl;
                 break;
@@ -32,7 +32,7 @@ int main()
 
         case 2:
         {
-            if(!manager.hasAccounts())
+            if (!manager.hasAccounts())
             {
                 std::cout << "\nKeine Konten vorhanden" << std::endl;
                 break;
@@ -52,7 +52,7 @@ int main()
 
         case 4:
         {
-            if(!manager.hasAccounts())
+            if (!manager.hasAccounts())
             {
                 std::cout << "\nKeine Konten vorhanden" << std::endl;
                 break;
@@ -64,7 +64,7 @@ int main()
 
         case 5:
         {
-            if(!manager.hasAccounts())
+            if (!manager.hasAccounts())
             {
                 std::cout << "\nKeine Konten vorhanden" << std::endl;
                 break;
